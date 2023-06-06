@@ -1,0 +1,9 @@
+p style="color: green" = notice
+
+== render @project
+
+div
+  .mb-4
+    = link_to "< Back to projects", projects_path, class: "text-gray-500 font-extralight"
+
+  = button_to "Delete", @project, method: :delete, class: 'btn btn-sm btn-outline btn-error'

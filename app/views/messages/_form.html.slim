@@ -1,0 +1,11 @@
+= form_with(model: @message, url: project_feed_index_path(@project)) do |form|
+  - if @message.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+      ul
+        - @message.errors.each do |error|
+          li = error.full_message
+
+  .flex.flex-row.w-full
+    = form.text_field :body, placeholder: "Enter comment", class: "w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3", autocomplete: "off"
+    = form.submit "Send", class: "inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none float-right"
