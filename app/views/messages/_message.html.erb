@@ -1,0 +1,18 @@
+<% belongs_to_current_user = message.user == current_user %>
+
+<% message_alignment = belongs_to_current_user ? "" : "justify-end" %>
+<% avatar = belongs_to_current_user ? "https://railsdevs.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbEVtIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b230e7fcf12556ad24d7381ec35144676c72d1b3/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFHQWFRR0EiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b6239751a398ec468311e69677a9e2a95ada751d/avatar.jpg" : 'https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp' %>
+
+<% balloon_color = belongs_to_current_user ? "bg-gray-300 text-gray-600" : "bg-blue-600 text-white" %>
+
+<div class="chat-message">
+  <div class="flex items-end <%= message_alignment %>">
+    <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+        <div>
+          <span class="flex"><%= l message.created_at, format: :short %></span>
+          <span class="px-4 py-2 rounded-lg inline-block rounded-bl-none <%= balloon_color %>"><%= message.body %></span>
+        </div>
+    </div>
+    <img src="<%= avatar %>?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-6 h-6 rounded-full order-1">
+  </div>
+</div>

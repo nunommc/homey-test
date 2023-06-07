@@ -5,5 +5,4 @@
 import { application } from "./application"
 
 import MessageFeedController from "./message_feed_controller"
-
 application.register("message-feed", MessageFeedController)

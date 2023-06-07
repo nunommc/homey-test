@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
+    @messages = @project.messages.last(25)
     @message = Message.new
   end
 

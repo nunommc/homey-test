@@ -24,13 +24,14 @@ class MessagesController < ApplicationController
     @message = current_user.messages.new(message_params)
 
     respond_to do |format|
-      if @message.save
-        # format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
-        format.json { render :show, status: :created, location: @message }
-      else
-        # format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+      format.turbo_stream do
+        if @message.save
+          render turbo_stream: turbo_stream.append('messages', partial: "messages/message", locals: { message: @message })
+        else
+          render :edit, status: :unprocessable_entity
+        end
       end
+
     end
   end
 
@@ -65,7 +66,7 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.fetch(:message, {}).permit(:body).merge(
+      params.require(:message).permit(:body).merge(
         params.permit(:project_id)
       )
     end

@@ -6,4 +6,11 @@ export default class extends Controller {
     const el = document.getElementById('messages')
     el.scrollTop = el.scrollHeight
   }
+
+  clear_and_scroll(event) {
+    event.target.reset()
+
+    const el = document.getElementById('messages')
+    el.scrollTop = el.scrollHeight
+  }
 }
