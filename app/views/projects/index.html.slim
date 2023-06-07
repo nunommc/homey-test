@@ -9,6 +9,7 @@ p style="color: green" = notice
       .prose
         h3 = project.name
       p = project.description.truncate(200)
+      p = project_status_badge(project)
       p
         = link_to "Show this project", project, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline"
 

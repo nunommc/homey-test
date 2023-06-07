@@ -14,5 +14,7 @@
     = form.label :description, class: "text-gray-500 font-bold"
     = form.text_area :description, class: "mt-1 block w-full rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
 
+    = form.label :status, class: "text-gray-500 font-bold"
+    = form.select :status, options_from_collection_for_select(Project.statuses, :first, :first, project.status), {}, class: "mt-1 block w-full rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     .mt-4
       = form.submit class: 'btn btn-primary'

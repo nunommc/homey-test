@@ -9,6 +9,18 @@ class ProjectsController < ApplicationController
   # GET /projects/1 or /projects/1.json
   def show
     @messages = @project.messages.last(25)
+
+    @status_logs = @project.project_status_logs.limit(10)
+
+    if @messages.any?
+      @status_logs = @status_logs.where(
+        "created_at > ?", @messages.first.created_at
+      )
+    end
+
+    @events = @messages + @status_logs
+    @events.sort_by!(&:created_at)
+
     @message = Message.new
   end
 
@@ -67,6 +79,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {}).permit(:name, :description)
+      params.fetch(:project, {}).permit(:name, :description, :status)
     end
 end

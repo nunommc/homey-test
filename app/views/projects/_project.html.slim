@@ -3,6 +3,7 @@ div id="#{dom_id project}"
     = link_to "Edit", edit_project_path(@project), class: 'btn'
   .prose.mb-16
     h3 = project.name.upcase
+    = project_status_badge(project)
 
   .grid.grid-cols-6.gap-4
     .lg:col-span-2

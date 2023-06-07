@@ -1,0 +1,6 @@
+.status-change
+  .flex.text-xs
+    span = l event.created_at, format: :short
+    span.mt-4
+      | Status changed to:
+      = event.status.camelize

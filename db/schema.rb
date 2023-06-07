@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_165933) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_150255) do
   create_table "messages", force: :cascade do |t|
     t.string "body"
     t.integer "project_id", null: false
@@ -21,10 +21,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_165933) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "project_status_logs", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_status_logs_on_project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,4 +51,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_165933) do
 
   add_foreign_key "messages", "projects"
   add_foreign_key "messages", "users"
+  add_foreign_key "project_status_logs", "projects"
 end
