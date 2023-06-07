@@ -15,3 +15,5 @@ The questions are in [questions.MD](questions.MD)
 
 
 ![](assets/20230607_165438_image.png)
+
+![](assets/20230607_165346_image.png)
